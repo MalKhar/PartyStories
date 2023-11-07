@@ -5,12 +5,27 @@ import { HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class TaskService {
+  create(task: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(
     private http:  HttpClient
   ) { }
 
   getTasks(){
-    return this.http.get('localhost:8080/api/tasks/')
+    return this.http.get('http://localhost:8080/api/tasks/')
+  }
+
+  updateTasks(task){
+    return this.http.put(`http://localhost:8080/api/tasks/${task.id}`, task)
+  }
+
+  createTask(task){
+    return this.http.post(`http://localhost:8080/api/tasks/`,task)
+  }
+
+  delete(task){
+    return this.http.delete(`http://localhost:8080/api/tasks/${task.id}`)
   }
 }
