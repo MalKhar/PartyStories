@@ -1,20 +1,26 @@
-<h1 class="title">TASKS</h1>
-<div *ngIf="tasks" class="container">
-    <button class="mid" (click)="newTask()">new task</button>
-    <div class="card"  *ngFor="let task of tasks">
-        <div (click)="openModal(task)" class="flex">
-            <div class="titleCard">
-                > {{task.title}}
-            </div>
-            <p class="subtitle">
-                {{task.description}} </p>
+<div class="appContainer">
+    <h1 class="title">TASKS</h1>
+    <div *ngIf="tasks" class="container">
+        <div class="flex">
+            <button class="mid" (click)="newTask()">new task</button>
+            <button class="mid" (click)="deleteAll()">delete all</button>
         </div>
-        <p (click)="deleteTask(task)" class="delete">X</p>
+        <div (click)="openModal(task)" class="card" *ngFor="let task of tasks">
+            <div >
+                <div class="titleCard">
+                    > {{task.title}}
+                </div>
+                <p class="subtitle">
+                    {{task.description}} </p>
+            </div>
+            <p (click)="deleteTask(task)" class="delete">X</p>
+        </div>
     </div>
-</div>
 
-<div *ngIf="!tasks">
-    nada de novo aqui!
+    <div *ngIf="!tasks">
+        nada de novo aqui!
+    </div>
+
 </div>
 
 <div *ngIf="isModalOn" class="backdrop">
@@ -22,10 +28,10 @@
         <div class="top">
             <p (click)="clonseModal()">X</p>
         </div>
-        <label for="">Titulo</label>
-        <input [(ngModel)]="focus.title" type="text">
-        <label for="">descrição</label>
-        <input [(ngModel)]="focus.description" type="text">
+        <label class="label" for="">Titulo</label>
+        <input placeholder="Titulo" [(ngModel)]="focus.title" type="text">
+        <label class="label" for="">descrição</label>
+        <input placeholder="Descrição" [(ngModel)]="focus.description" type="text">
         <button (click)="save(focus)">Save</button>
     </div>
 

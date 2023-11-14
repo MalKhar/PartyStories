@@ -25,6 +25,10 @@ export class TaskService {
     return this.http.post(`http://localhost:8080/api/tasks/`,task)
   }
 
+  deleteAll(){
+    return this.http.delete(`http://localhost:8080/api/tasks/`)
+  }
+
   delete(task){
     return this.http.delete(`http://localhost:8080/api/tasks/${task.id}`)
   }

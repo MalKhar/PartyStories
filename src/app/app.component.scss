@@ -1,6 +1,23 @@
 .title {
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-family: 'lobster';
+    //multiple lines project
+    // text-shadow: 4px 8px 4px #f7a3a3, 2px 4px 6px #f57e7e ;
+}
+
+.appContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+    button{
+        width: 40%;
+    }
 }
 
 .container {
@@ -23,12 +40,14 @@
 
 .card {
     // border: solid 1px grey;
+    transition: opacity .2s, visibility .2s;
     border-radius: 20px;
     padding: 20px;
     margin: 1rem 2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     cursor: pointer;
     display: flex;
+    transition: margin 1s;
 
     .delete {
         margin: auto;
@@ -36,10 +55,18 @@
     }
 }
 
-.mid {
-    margin: 0px auto;
-    height: 30px;
+.card:hover { 
+    margin-left: 4rem;
+}
 
+.mid {
+    margin: 5px auto;
+    height: 30px;
+}
+
+.label {
+    margin: 10px 0px;
+    font-size: 1.2rem;
 }
 
 .backdrop {
@@ -49,10 +76,14 @@
     position: absolute;
     top: 0px;
     left: 0px;
-
     background-color: rgba(0, 0, 0, 0.445);
 
     .modal {
+        input {
+            height: 30px;
+            padding: 5px 10px;
+        }
+
         .top {
             display: flex;
             margin-left: auto;
@@ -74,5 +105,25 @@
             height: 30px;
 
         }
+    }
+}
+
+@keyframes moveRight {
+    from {
+        margin-left: 2rem;
+    }
+
+    to {
+        margin-left: 4rem;
+    }
+}
+
+@keyframes moveLeft {
+    from {
+        margin-left: 4rem;
+    }
+
+    to {
+        margin-left: 2rem;
     }
 }
