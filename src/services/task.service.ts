@@ -22,7 +22,7 @@ export class TaskService {
   }
 
   createTask(task){
-    return this.http.post(`http://localhost:8080/api/tasks/`,task)
+    return this.http.post(`https://task-back-cd6t9gg3c-chainachaina.vercel.app/api/tasks`,task)
   }
 
   deleteAll(){

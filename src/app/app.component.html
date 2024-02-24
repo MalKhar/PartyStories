@@ -1,38 +1,35 @@
-<div class="appContainer">
-    <h1 class="title">TASKS</h1>
-    <div *ngIf="tasks" class="container">
-        <div class="flex">
-            <button class="mid" (click)="newTask()">new task</button>
-            <button class="mid" (click)="deleteAll()">delete all</button>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Code+Latin:wght@200&display=swap" rel="stylesheet" />
+  </head>
+  <div class="container">
+    <div class="content">
+      <div class="center">
+        <div class="title">
+          <h1 *ngIf="check == 0">TÁ CURTINDO?</h1>
+          <h1>{{done}}</h1>
+          <p *ngIf="check == 0" class="sub">Conta pro André!</p>
+          <p *ngIf="check == 0" class="clean-text">Vamos fazer um compilado de fotos <br> e mensagens de vocês</p>
         </div>
-        <div (click)="openModal(task)" class="card" *ngFor="let task of tasks">
-            <div >
-                <div class="titleCard">
-                    > {{task.title}}
-                </div>
-                <p class="subtitle">
-                    {{task.description}} </p>
-            </div>
-            <p (click)="deleteTask(task)" class="delete">X</p>
+  
+        <div class="container form">
+          <input [(ngModel)]="name" class="input" type="text" id="name" placeholder="Nome (obrigatório)" />
+          <input class="input" type="text" id="name" placeholder="Número do cartão (opcional)" />
+          <div class="relative">
+            <textarea [(ngModel)]="text" class="input textarea" type="textarea" placeholder="História que viveu no rolê ou mensagem legal"
+              rows="80"></textarea>
+            <button *ngIf="!loading" (click)="save()" class="send"> VALEU</button>
+          </div>
         </div>
+      </div>
     </div>
-
-    <div *ngIf="!tasks">
-        nada de novo aqui!
-    </div>
-
-</div>
-
-<div *ngIf="isModalOn" class="backdrop">
-    <div class="modal">
-        <div class="top">
-            <p (click)="clonseModal()">X</p>
-        </div>
-        <label class="label" for="">Titulo</label>
-        <input placeholder="Titulo" [(ngModel)]="focus.title" type="text">
-        <label class="label" for="">descrição</label>
-        <input placeholder="Descrição" [(ngModel)]="focus.description" type="text">
-        <button (click)="save(focus)">Save</button>
-    </div>
-
-</div>
+  </div>
+  <div class="mobile-only">
+    CALMA CAMPEÃO É SÒ PRA MOBILE, VAI PEGAR SEU CELULAR
+  </div>
+  
+  <div class="bottomPhotos container">
+    <img class="picture" src="../assets/assets/PNG/4.png" alt="uai" />
+    <img class="picture flip" src="../assets/assets/PNG/4.png" alt="uai" />
+  </div>

@@ -12,6 +12,11 @@ export class AppComponent {
   tasks
   focus
   isModalOn
+  name
+  text
+  done
+  check = 0
+  loading: boolean;
 
 
   constructor(
@@ -22,85 +27,24 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.loadTask()
   }
 
-  deleteTask(task) {
-    event.stopPropagation()
-    this.taskService.delete(task).subscribe((res) => {
-      this.toastService.success('Feito!')
-      this.loadTask()
-    },(err)=>{
-      this.toastService.error('Algo deu errado.')
-      this.toastService.error(':(')
-    })
-  }
-
-  deleteAll() {
-    this.taskService.deleteAll().subscribe((res) => {
-
-      this.toastService.success('Feito!')
-      this.loadTask()
-    },(err)=>{
-      this.toastService.error('Algo deu errado.')
-      this.toastService.error(':(')
-    })
-  }
-
-  loadTask() {
-    this.taskService.getTasks().subscribe((res) => {
-      this.tasks = res
-    },(err)=>{
-      this.toastService.error('Algo deu errado.')
-      this.toastService.error(':(')
-    })
-  }
-
-  clonseModal() {
-    this.isModalOn = false
-  }
-
-  newTask() {
+  save() {
+    this.check ++
+    this.loading = true
     let task = {
-      title: '',
-      descrption: '',
-      id: null
+      title: this.name,
+      description: this.text
     }
-    this.openModal(task)
+    this.taskService.createTask(task).subscribe((res) => {
+      this.loading = false
+      this.done = 'Mensagem enviada!'
+    },(err)=>{
+      this.loading = false
+      this.done = 'ALGO DEU ERRADO, TENTA DE NOVO'
+    })
   }
 
-  openModal(task) {
-    this.focus = task
-    this.isModalOn = true
-  }
-
-  save(task) {
-    if (task.id) {
-      this.taskService.updateTasks(task).subscribe((res) => {
-
-        this.focus = null
-        this.isModalOn = null
-        this.loadTask()
-        this.toastService.success('Feito!')
-      },(err)=>{
-        this.toastService.error('Algo deu errado.')
-        this.toastService.error(':(')
-      })
-    } else {
-      this.taskService.createTask(task).subscribe((res) => {
-
-        this.focus = null
-        this.isModalOn = null
-        this.loadTask()
-        this.toastService.success('Feito!')
-      },(err)=>{
-        this.toastService.error('Algo deu errado.')
-        this.toastService.error(':(')
-      })
-    }
-
-
-  }
 }
 
 
